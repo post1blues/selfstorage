@@ -16,7 +16,6 @@ class CustomUser(AbstractUser):
     is_active = models.BooleanField('active', default=True)
     created_at = models.DateTimeField(verbose_name='дата создания', default=timezone.now)
     passport_code = models.CharField(verbose_name='код пасспорта', max_length=40)
-    qr_code = models.ImageField(verbose_name='qr-код', upload_to='qr_codes/', null=True)
 
     username = models.CharField(
         'username',
