@@ -6,11 +6,6 @@ from django.views.generic import CreateView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import authenticate, login, logout
 
-from tempfile import TemporaryFile
-from django.core.files.storage import default_storage
-from django.core.files.base import ContentFile
-from django.utils.encoding import force_text
-import qrcode
 
 from selfstorage.models import StorageOrder, SeasonOrder, Payment
 from users.forms import CustomUserCreationForm
