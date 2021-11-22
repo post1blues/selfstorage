@@ -1,0 +1,285 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+Аренда склада или бокса
+{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <div class="gap-30"></div>
+    <div class="row text-center">
+      <div class="col-12">
+        <h2 class="section-sub-title">SELF-STORAGE - аренда складских боксов</h2>
+        <h3 class="section-title">Услуги по аренде складских боксов и сезонного хранения вещей.</h3>
+      </div>
+    </div>
+</div>
+
+<section class="call-to-action-box">
+  <div class="container">
+    <form action="{% url 'order' %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" value="box-rent" name="rent-type"/>
+    <div class="action-style-box">
+        <div class="row align-items-center">
+          <div class="col-md-8 text-center text-md-left">
+              <div class="call-to-action-text">
+                <h1 class="action-title">Калькулятор аренды бокса</h1>
+              </div>
+              <div class="gap-30"></div>
+              <div>
+                  <div class="col-md-10 no-padding">
+                      <div class="form-group row">
+                          <label for="address" class="col-sm-2 col-form-label card-header font-weight-bold bg-transparent">Склад:</label>
+                          <div class="col-sm-10">
+                          <select id="address" class="form-control" style="background-color: white" name="storage">
+                              {% for storage in storages %}
+                              <option value="{{ storage.id }}" data-price="{{ storage.price }}">{{ storage.address }}</option>
+                              {% endfor %}
+                          </select>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div>
+                  <div class="col-md-10 no-padding">
+                      <div class="form-group row">
+                          <label for="box-size" class="col-sm-2 col-form-label  card-header font-weight-bold bg-transparent">Бокс:</label>
+                          <div class="col-sm-10">
+                          <select id="box-size" class="form-control" style="background-color: white" name="box">
+                              {% for box in boxes %}
+                              <option value="{{ box.id }}" data-price="{{ box.price }}">{{ box.size }} кв.м.</option>
+                              {% endfor %}
+                          </select>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div>
+                  <div class="col-md-10 no-padding">
+                      <div class="form-group row">
+                          <label for="rent-term" class="col-sm-2 col-form-label  card-header font-weight-bold bg-transparent">Время:</label>
+                          <div class="col-sm-10">
+                          <select id="rent-term" class="form-control" style="background-color: white" name="rent_time">
+                              <option value="1">1 мес.</option>
+                              <option value="2">2 мес.</option>
+                              <option value="3">3 мес.</option>
+                              <option value="4">4 мес.</option>
+                              <option value="5">5 мес.</option>
+                              <option value="6">6 мес.</option>
+                              <option value="7">7 мес.</option>
+                              <option value="8">8 мес.</option>
+                              <option value="9">9 мес.</option>
+                              <option value="10">10 мес.</option>
+                              <option value="11">11 мес.</option>
+                              <option value="12">12 мес.</option>
+                          </select>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div><!-- Col end -->
+          <div class="col-md-4 text-center text-md-left mt-3 mt-md-0">
+              <div class="call-to-action-text">
+                <h2 class="action-title">Стоимость</h2>
+              </div>
+              <div class="gap-30"></div>
+              <div ><h4><b>Всего:</b> <span id="price-per-year">0</span> руб.</h4></div>
+              <div class="gap-20"></div>
+              <div class="call-to-action-btn text-md-center">
+                  <button class="btn btn-primary" id="rent-button" type="submit">Арендовать</button>
+              </div>
+          </div><!-- col end -->
+        </div><!-- row end -->
+    </div><!-- Action style box -->
+    </form>
+  </div><!-- Container end -->
+</section>
+
+<section id="facts" class="facts-area dark-bg">
+  <div class="container">
+    <div class="facts-wrapper">
+        <div class="row">
+          <div class="col-md-3 col-sm-6 ts-facts">
+              <div class="ts-facts-img">
+                <img loading="lazy" src="{% static 'images/icon-image/fact1.png' %}" alt="facts-img">
+              </div>
+              <div class="ts-facts-content">
+                <h2 class="ts-facts-num"><span>{{ storages|length }}</span></h2>
+                <h3 class="ts-facts-title">Количество складов</h3>
+              </div>
+          </div><!-- Col end -->
+
+          <div class="col-md-3 col-sm-6 ts-facts mt-5 mt-sm-0">
+              <div class="ts-facts-img">
+                <img loading="lazy" src="{% static 'images/icon-image/fact2.png' %}" alt="facts-img">
+              </div>
+              <div class="ts-facts-content">
+                <h2 class="ts-facts-num"><span>42</span></h2>
+                <h3 class="ts-facts-title">Количество сотрудников</h3>
+              </div>
+          </div><!-- Col end -->
+
+          <div class="col-md-3 col-sm-6 ts-facts mt-5 mt-md-0">
+              <div class="ts-facts-img">
+                <img loading="lazy" src="{% static 'images/icon-image/fact3.png' %}" alt="facts-img">
+              </div>
+              <div class="ts-facts-content">
+                <h2 class="ts-facts-num"><span>24/7</span></h2>
+                <h3 class="ts-facts-title">Доступ к складу</h3>
+              </div>
+          </div><!-- Col end -->
+
+          <div class="col-md-3 col-sm-6 ts-facts mt-5 mt-md-0">
+              <div class="ts-facts-img">
+                <img loading="lazy" src="{% static 'images/icon-image/fact4.png' %}" alt="facts-img">
+              </div>
+              <div class="ts-facts-content">
+                <h2 class="ts-facts-num"><span>1000</span></h2>
+                <h3 class="ts-facts-title">Довольных клиентов</h3>
+              </div>
+          </div><!-- Col end -->
+
+        </div> <!-- Facts end -->
+    </div>
+    <!--/ Content row end -->
+  </div>
+  <!--/ Container end -->
+</section>
+
+
+<section id="ts-features" class="ts-features">
+  <div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+          <div class="ts-intro">
+              <h2 class="into-title">Почему мы?</h2>
+              <h3 class="into-sub-title">Лучшие условия</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aperiam at autem distinctio, dolorem doloremque eos est fugit hic in, laboriosam minus nihil quam quidem quo rem sed sint ullam?</p>
+          </div><!-- Intro box end -->
+
+          <div class="gap-20"></div>
+
+          <div class="row">
+              <div class="col-md-6">
+                <div class="ts-service-box">
+                    <span class="ts-service-icon">
+                      <i class="fas fa-trophy"></i>
+                    </span>
+                    <div class="ts-service-box-content">
+                      <h3 class="service-box-title">10 лет на рынке</h3>
+                    </div>
+                </div><!-- Service 1 end -->
+              </div><!-- col end -->
+
+              <div class="col-md-6">
+                <div class="ts-service-box">
+                    <span class="ts-service-icon">
+                      <i class="fas fa-sliders-h"></i>
+                    </span>
+                    <div class="ts-service-box-content">
+                      <h3 class="service-box-title">Лучшие помещения</h3>
+                    </div>
+                </div><!-- Service 2 end -->
+              </div><!-- col end -->
+          </div><!-- Content row 1 end -->
+
+          <div class="row">
+              <div class="col-md-6">
+                <div class="ts-service-box">
+                    <span class="ts-service-icon">
+                      <i class="fas fa-thumbs-up"></i>
+                    </span>
+                    <div class="ts-service-box-content">
+                      <h3 class="service-box-title">Клиенто ориентированность</h3>
+                    </div>
+                </div><!-- Service 1 end -->
+              </div><!-- col end -->
+
+              <div class="col-md-6">
+                <div class="ts-service-box">
+                    <span class="ts-service-icon">
+                      <i class="fas fa-users"></i>
+                    </span>
+                    <div class="ts-service-box-content">
+                      <h3 class="service-box-title">Команда Профессионалов</h3>
+                    </div>
+                </div><!-- Service 2 end -->
+              </div><!-- col end -->
+          </div><!-- Content row 1 end -->
+        </div><!-- Col end -->
+
+        <div class="col-lg-6 mt-4 mt-lg-0">
+          <h3 class="into-sub-title">Наши ценности</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At eos et hic libero maiores obcaecati optio quam velit veniam. Ab, doloremque eius et minima molestias perferendis recusandae sint vel. Quos!</p>
+
+          <div class="accordion accordion-group" id="our-values-accordion">
+              <div class="card">
+                <div class="card-header p-0 bg-transparent" id="headingOne">
+                    <h2 class="mb-0">
+                      <button class="btn btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                          Безопасность
+                      </button>
+                    </h2>
+                </div>
+
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#our-values-accordion" style="">
+                    <div class="card-body">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores praesentium sit tenetur? At atque consectetur dolore eos est excepturi fuga in, ipsa libero modi odit provident, quidem ut vel voluptatem?
+                    </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header p-0 bg-transparent" id="headingTwo">
+                    <h2 class="mb-0">
+                      <button class="btn btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          Доступность
+                      </button>
+                    </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#our-values-accordion">
+                    <div class="card-body">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum cumque deleniti distinctio id itaque magni molestiae non odio omnis optio quaerat quam quo repellat reprehenderit rerum saepe sapiente, sequi similique?
+                    </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header p-0 bg-transparent" id="headingThree">
+                    <h2 class="mb-0">
+                      <button class="btn btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                          Честность
+                      </button>
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#our-values-accordion">
+                    <div class="card-body">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci asperiores blanditiis doloribus maiores optio provident quisquam unde voluptatibus. Doloremque eaque esse est hic nulla obcaecati officia perferendis, quis recusandae sit.
+                    </div>
+                </div>
+              </div>
+          </div>
+          <!--/ Accordion end -->
+
+        </div><!-- Col end -->
+    </div><!-- Row end -->
+  </div><!-- Container end -->
+</section>
+
+<div class="container">
+
+    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Ac0746b3626ce45d5b44f657a7858ef671176fee652d6aedbb2fcefb869fff5c9&amp;width=100%25&amp;height=700&amp;lang=ru_RU&amp;scroll=true"></script>
+
+    <div class="gap-40">
+
+</div>
+
+</div>
+
+
+
+{% endblock content %}

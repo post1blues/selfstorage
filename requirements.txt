@@ -1,0 +1,7 @@
+Django
+environs
+Pillow
+phonenumbers
+django-phonenumber-field
+django-allauth
+django-crispy_forms

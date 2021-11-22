@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="gap-40"></div>
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary">Вход</button>
+        </form>
+    </div>
+    <div class="container">
+        Нет аккаунта?  <a href="{% url 'signup' %}">Зарегистрируйтесь</a>
+    </div>
+<div class="gap-40"></div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Личный кабинет
+{% endblock title %}
+
+{% block content %}
+<div class="gap-40"></div>
+    <div class="container">
+        <h1>Добро пожаловать, {{current_user.fullname}}</h1>
+        <hr />
+        <h2>Ваши заказы:</h2>
+        {% if storage_orders %}
+            {% for order in storage_orders %}
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                      <h5 class="card-header">Аренда бокса</h5>
+                      <div class="card-body">
+                          <p class="card-text"><b>Склад по адресу:</b> {{ order.storage.address }}</p>
+                          <p class="card-text"><b>Аренда до:</b> {{ order.end_of_storage }}</p>
+                          <p class="card-text"><b>Общая стоимость:</b> {{ order.price }} рублей</p>
+                          <p class="card-text"><b>Обьем бокса:</b> {{ order.box.size }} м2</p>
+                          <p class="card-text"><b>Статус оплаты:</b>
+                            {% if order.payment.is_success %}
+                              Оплачено
+                              {% else %}
+                                Не оплачено (<a href="{% url 'payment' %}">Оплатить?</a>)
+                              {% endif %}
+                          </p>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+<div class="gap-40"></div>
+        {% if season_orders %}
+            {% for order in season_orders %}
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                      <h5 class="card-header">Сезонное хранение</h5>
+                      <div class="card-body">
+                          <p class="card-text"><b>Склад по адресу:</b> {{ order.storage.address }}</p>
+                          <p class="card-text"><b>Аренда до:</b> {{ order.end_of_storage }}</p>
+                          <p class="card-text"><b>Общая стоимость:</b> {{ order.price }} рублей</p>
+                          <p class="card-text"><b>На хранении:</b> {{ order.season_product.title }}</p>
+                          <p class="card-text"><b>Статус оплаты:</b>
+                            {% if order.payment.is_success %}
+                              Оплачено
+                              {% else %}
+                                Не оплачено (<a href="{% url 'payment' %}">Оплатить?</a>)
+                              {% endif %}
+                          </p>
+                          <hr>
+
+                      </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+<div class="gap-40"></div>
+{% endblock content %}

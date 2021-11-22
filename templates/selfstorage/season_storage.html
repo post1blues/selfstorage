@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+Сезонное хранение
+{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <div class="gap-30"></div>
+    <div class="row text-center">
+      <div class="col-12">
+        <h2 class="section-sub-title">SELF-STORAGE - сезонное хранение вещей</h2>
+        <h3 class="section-title">Услуги сезонного хранения вещей.</h3>
+      </div>
+    </div>
+</div>
+
+<section class="call-to-action-box">
+  <div class="container">
+    <form action="{% url 'order' %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" value="season-rent" name="rent-type"/>
+    <div class="action-style-box">
+        <div class="row align-items-center">
+          <div class="col-md-8 text-center text-md-left">
+              <div class="call-to-action-text">
+                <h1 class="action-title">Калькулятор сезонного хранения вещей</h1>
+              </div>
+              <div class="gap-30"></div>
+              <div>
+                  <div class="col-md-10 no-padding">
+                      <div class="form-group row">
+                          <label for="address" class="col-sm-2 col-form-label card-header font-weight-bold bg-transparent">Склад:</label>
+                          <div class="col-sm-10">
+                          <select id="address" class="form-control" style="background-color: white" name="storage">
+                              {% for storage in storages %}
+                              <option value="{{ storage.id }}" data-price="{{ storage.price }}">{{ storage.address }}</option>
+                              {% endfor %}
+                          </select>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div>
+                  <div class="col-md-10 no-padding">
+                      <div class="form-group row">
+                          <label for="box-size" class="col-sm-2 col-form-label  card-header font-weight-bold bg-transparent">Услуга:</label>
+                          <div class="col-sm-10">
+                          <select id="box-size" class="form-control" style="background-color: white" name="service">
+                              {% for service in services %}
+                                <option value="{{ service.id }}" data-price="{{ service.price }}">{{ service.title }}</option>
+                              {% endfor %}
+                          </select>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div>
+                  <div class="col-md-10 no-padding">
+                      <div class="form-group row">
+                          <label for="rent-term" class="col-sm-2 col-form-label  card-header font-weight-bold bg-transparent">Время:</label>
+                          <div class="col-sm-10">
+                          <select id="rent-term" class="form-control" style="background-color: white" name="rent_time">
+                              <option value="1">1 мес.</option>
+                              <option value="2">2 мес.</option>
+                              <option value="3">3 мес.</option>
+                              <option value="4">4 мес.</option>
+                              <option value="5">5 мес.</option>
+                              <option value="6">6 мес.</option>
+                              <option value="7">7 мес.</option>
+                              <option value="8">8 мес.</option>
+                              <option value="9">9 мес.</option>
+                              <option value="10">10 мес.</option>
+                              <option value="11">11 мес.</option>
+                              <option value="12">12 мес.</option>
+                          </select>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div><!-- Col end -->
+          <div class="col-md-4 text-center text-md-left mt-3 mt-md-0">
+              <div class="gap-30"></div>
+              <div class="gap-20"></div>
+              <div class="call-to-action-btn text-md-center">
+                  <button class="btn btn-primary" id="rent-button" type="submit">Сдать на хранение</button>
+              </div>
+          </div><!-- col end -->
+        </div><!-- row end -->
+    </div><!-- Action style box -->
+    </form>
+  </div><!-- Container end -->
+</section>
+
+
+{% endblock content %}

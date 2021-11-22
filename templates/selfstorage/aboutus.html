@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+О нас
+{% endblock title %}
+
+{% block content %}
+<section id="main-container" class="main-container">
+  <div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+          <h3 class="column-title">Кто мы?</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur beatae deleniti dolores eveniet ex explicabo, fugit itaque iure natus obcaecati odit omnis optio quidem quod sequi sit velit voluptatem!</p>
+          <p>He lay on his armour-like  back, and if he lifted. ultrices ultrices sapien, nec tincidunt nunc posuere ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn’t anything embarrassing.</p>
+
+        </div><!-- Col end -->
+
+        <div class="col-lg-6 mt-5 mt-lg-0">
+            <img src="{% static 'images/baner-img.png' %}">
+
+        </div><!-- Col end -->
+    </div><!-- Content row end -->
+
+  </div><!-- Container end -->
+</section><!-- Main container end -->
+
+{% endblock content %}

@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Напишите нам
+{% endblock title %}
+
+{% block content %}
+<section id="main-container" class="main-container">
+  <div class="container">
+
+    <div class="row text-center">
+      <div class="col-12">
+        <h3 class="section-sub-title">Наши контакты</h3>
+      </div>
+    </div>
+    <!--/ Title row end -->
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="ts-service-box-bg text-center h-100">
+          <span class="ts-service-icon icon-round">
+            <i class="fas fa-map-marker-alt mr-0"></i>
+          </span>
+          <div class="ts-service-box-content">
+            <h4>Наш офис</h4>
+            <p>Москва, ул. Пушкина</p>
+          </div>
+        </div>
+      </div><!-- Col 1 end -->
+
+      <div class="col-md-4">
+        <div class="ts-service-box-bg text-center h-100">
+          <span class="ts-service-icon icon-round">
+            <i class="fa fa-envelope mr-0"></i>
+          </span>
+          <div class="ts-service-box-content">
+            <h4>Наш Email</h4>
+            <p>office@selfstorage.com</p>
+          </div>
+        </div>
+      </div><!-- Col 2 end -->
+
+      <div class="col-md-4">
+        <div class="ts-service-box-bg text-center h-100">
+          <span class="ts-service-icon icon-round">
+            <i class="fa fa-phone-square mr-0"></i>
+          </span>
+          <div class="ts-service-box-content">
+            <h4>Телефон</h4>
+            <p>(+7) 922-123-4567</p>
+          </div>
+        </div>
+      </div><!-- Col 3 end -->
+
+    </div><!-- 1st row end -->
+
+    <div class="gap-60"></div>
+      <div class="row">
+      <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A007ef07eceb83cd3d02fc9e330dfff4ed1112a46f9c45145b069830dc7caff8a&amp;width=100%25&amp;height=500&amp;lang=ru_RU&amp;scroll=true"></script>
+      </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="column-title">Мы ждем ваши отзывы и предложения</h3>
+        <!-- contact form works with formspree.io  -->
+        <!-- contact form activation doc: https://docs.themefisher.com/constra/contact-form/ -->
+        <form id="contact-form" action="#" method="post" role="form">
+          <div class="error-container"></div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Имя</label>
+                <input class="form-control form-control-name" name="name" id="name" placeholder="" type="text" required="">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Email</label>
+                <input class="form-control form-control-email" name="email" id="email" placeholder="" type="email" required="">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Тема письма</label>
+                <input class="form-control form-control-subject" name="subject" id="subject" placeholder="" required="">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Сообщение</label>
+            <textarea class="form-control form-control-message" name="message" id="message" placeholder="" rows="10" required=""></textarea>
+          </div>
+          <div class="text-right"><br>
+            <button class="btn btn-primary solid blank" type="submit">Отправить</button>
+          </div>
+        </form>
+      </div>
+
+    </div><!-- Content row -->
+  </div><!-- Conatiner end -->
+</section>
+{% endblock content %}

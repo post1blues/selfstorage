@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+    <h1>Спасибо за бронирование, оплата принята</h1>
+    <p>Вернуться в <a href="{% url 'profile' %}"> личный кабинет</a></p>
+</div>
+
+{% endblock content %}
